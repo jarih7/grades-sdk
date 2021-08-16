@@ -1,0 +1,236 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>grades-sdk</title>
+	<meta name="description" content="Documentation for grades-sdk">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">grades-sdk</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>grades-sdk</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#grades-sdk" id="grades-sdk" style="color: inherit; text-decoration: none;">
+					<h1>Grades SDK</h1>
+				</a>
+				<p>GradesSDK is a tool for integration of Grades classification system into your app. It provides a set of functions and  for simple communication with the Grades service, eliminating the need of using HTTP requests during your development.</p>
+				<p>Links:</p>
+				<ul>
+					<li><a href="https://gitlab.fit.cvut.cz/hampejar/grades-sdk">GitLab Project</a></li>
+					<li><a href="https://www.npmjs.com/package/grades-sdk">NPM module page</a></li>
+					<li><a href="https://auth.fit.cvut.cz/manager/index.jsf">Apps Manager portal</a></li>
+				</ul>
+				<a href="#installing" id="installing" style="color: inherit; text-decoration: none;">
+					<h2>Installing</h2>
+				</a>
+				<pre><code><span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">install</span><span style="color: #000000"> </span><span style="color: #001080">grades</span><span style="color: #000000">-</span><span style="color: #001080">sdk</span>
+</code></pre>
+				<a href="#preparation" id="preparation" style="color: inherit; text-decoration: none;">
+					<h2>Preparation</h2>
+				</a>
+				<p>In order to gain access to Grades API, it is first necessary to perform the following two-step process:</p>
+				<ol>
+					<li>Create a project in the <a href="https://auth.fit.cvut.cz/manager/index.jsf">Apps Manager portal</a></li>
+					<li>Add a new application to your project</li>
+					<li>Pass the client ID and SECRET of the added app to the GradesSDK constructor as shown below. The module will manage the authentication from now on.</li>
+				</ol>
+				<a href="#configuration" id="configuration" style="color: inherit; text-decoration: none;">
+					<h2>Configuration</h2>
+				</a>
+				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">sdk</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;grades-sdk&#039;</span><span style="color: #000000">);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> {</span><span style="color: #0070C1">GradesURL</span><span style="color: #000000">} = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;grades-sdk/lib/apiRequestor&quot;</span><span style="color: #000000">);</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">grades</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #001080">sdk</span><span style="color: #000000">.</span><span style="color: #795E26">GradesSDK</span><span style="color: #000000">(</span><span style="color: #001080">GradesURL</span><span style="color: #000000">.</span><span style="color: #001080">Live</span><span style="color: #000000">, </span><span style="color: #001080">clientId</span><span style="color: #000000">, </span><span style="color: #001080">clientSecret</span><span style="color: #000000">);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">myCourse</span><span style="color: #000000"> = </span><span style="color: #001080">grades</span><span style="color: #000000">.</span><span style="color: #795E26">getCourse</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;NI-XYZ&#039;</span><span style="color: #000000">);</span>
+</code></pre>
+				<p>All set! The <code>grades</code> instance can be used to retrieve the semester code or to return a <code>Course</code> instance. To manage a course – its definition hierarchy, student groups and student classifications, the <code>Course</code> instance (named <code>myCourse</code> in the code snippet above) can be used.</p>
+				<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
+					<h2>Examples</h2>
+				</a>
+				<p>The following code snippets show how the module can be used to perform a number of basic tasks.</p>
+				<a href="#getting-current-semester-code" id="getting-current-semester-code" style="color: inherit; text-decoration: none;">
+					<h3>Getting current semester code</h3>
+				</a>
+				<pre><code class="language-javascript"><span style="color: #0000FF">async</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">getSemesterCode</span><span style="color: #000000">() {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">semesterCode</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">grades</span><span style="color: #000000">.</span><span style="color: #795E26">getSemesterCode</span><span style="color: #000000">()</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">semesterCode</span><span style="color: #000000">);</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#getting-course-info" id="getting-course-info" style="color: inherit; text-decoration: none;">
+					<h3>Getting course info</h3>
+				</a>
+				<pre><code class="language-javascript"><span style="color: #0000FF">async</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">getInfoForMyCourse</span><span style="color: #000000">() {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">courseInfo</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">myCourse</span><span style="color: #000000">.</span><span style="color: #795E26">getCourseInfo</span><span style="color: #000000">();</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">courseInfo</span><span style="color: #000000">);</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#getting-the-course39s-definition-hierarchy" id="getting-the-course39s-definition-hierarchy" style="color: inherit; text-decoration: none;">
+					<h3>Getting the course&#39;s definition hierarchy</h3>
+				</a>
+				<pre><code class="language-javascript"><span style="color: #0000FF">async</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">getDHForMyCourse</span><span style="color: #000000">() {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">definitionHierarchy</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">myCourse</span><span style="color: #000000">.</span><span style="color: #001080">definitions</span><span style="color: #000000">.</span><span style="color: #795E26">getDefinitionHierarchy</span><span style="color: #000000">();</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">definitionHierarchy</span><span style="color: #000000">);</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#adding-a-new-definition-to-the-course39s-definition-hierarchy" id="adding-a-new-definition-to-the-course39s-definition-hierarchy" style="color: inherit; text-decoration: none;">
+					<h3>Adding a new definition to the course&#39;s definition hierarchy</h3>
+				</a>
+				<p>It will be necessary to add the following require statement to the top of your file to gain access to the <code>Definition</code> class provided by the module.</p>
+				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> {</span><span style="color: #0070C1">Definition</span><span style="color: #000000">} = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;grades-sdk/lib/definition&quot;</span><span style="color: #000000">);</span>
+</code></pre>
+				<p>The <code>Definition</code> constructor accepts any object that implements the <code>DefnitionInterface</code>. More detailed information about the classes and interfaces provided by this module can be found in the documentation. -&gt; Just pull this project and open the <code>docs/index.html</code> file in a browser.</p>
+				<pre><code class="language-javascript"><span style="color: #0000FF">async</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">addDefinitionIntoDH</span><span style="color: #000000">() {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">newDefinition</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Definition</span><span style="color: #000000">({</span>
+<span style="color: #000000">      </span><span style="color: #001080">identifier:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;test_definition&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">parentIdentifier:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">namesForLocales:</span><span style="color: #000000"> {</span><span style="color: #001080">en:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Test definition&#039;</span><span style="color: #000000">, </span><span style="color: #001080">cs:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Testovací definice&#039;</span><span style="color: #000000">},</span>
+<span style="color: #000000">      </span><span style="color: #001080">courseCode:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;PI-ARB&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">semesterCode:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;B202&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">expression:</span><span style="color: #000000"> </span><span style="color: #0000FF">null</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">classificationType:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;QUIZ&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">evaluationType:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;MANUAL&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">minimumValue:</span><span style="color: #000000"> </span><span style="color: #098658">0</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">minimumRequiredValue:</span><span style="color: #000000"> </span><span style="color: #098658">7</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">maximumValue:</span><span style="color: #000000"> </span><span style="color: #098658">10</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">valueType:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;NUMBER&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">hidden:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span>
+<span style="color: #000000">    });</span>
+<span style="color: #000000">    </span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">myCourse</span><span style="color: #000000">.</span><span style="color: #001080">definitions</span><span style="color: #000000">.</span><span style="color: #795E26">createDefinitions</span><span style="color: #000000">(</span><span style="color: #001080">newDefinition</span><span style="color: #000000">);</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#deleting-a-definition-from-the-course39s-definition-hierarchy" id="deleting-a-definition-from-the-course39s-definition-hierarchy" style="color: inherit; text-decoration: none;">
+					<h3>Deleting a definition from the course&#39;s definition hierarchy</h3>
+				</a>
+				<pre><code class="language-javascript"><span style="color: #0000FF">async</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">deleteDefinition</span><span style="color: #000000">(</span><span style="color: #001080">definitionIdentifier</span><span style="color: #000000">) {</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">myCourse</span><span style="color: #000000">.</span><span style="color: #001080">definitions</span><span style="color: #000000">.</span><span style="color: #795E26">deleteDefinitions</span><span style="color: #000000">(</span><span style="color: #001080">definitionIdentifier</span><span style="color: #000000">);</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;Definition deleted&quot;</span><span style="color: #000000">);</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#getting-the-classifications-of-a-student-group" id="getting-the-classifications-of-a-student-group" style="color: inherit; text-decoration: none;">
+					<h3>Getting the classifications of a student group</h3>
+				</a>
+				<pre><code class="language-javascript"><span style="color: #0000FF">async</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">getGroupClassifications</span><span style="color: #000000">(</span><span style="color: #001080">groupCode</span><span style="color: #000000">) {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">studentsClassifications</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">myCourse</span><span style="color: #000000">.</span><span style="color: #001080">classifications</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">getStudentClassificationsForGroup</span><span style="color: #000000">(</span><span style="color: #001080">groupCode</span><span style="color: #000000">);</span>
+<span style="color: #000000">}</span>
+</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/apirequestor.html">api<wbr>Requestor</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/classification.html">classification</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/course.html">course</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/courseclassifications.html">course<wbr>Classifications</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/coursedefinitions.html">course<wbr>Definitions</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/definition.html">definition</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/gradessdk.html">gradesSDK</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/gradestypes.html">grades<wbr>Types</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/helpers.html">helpers</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

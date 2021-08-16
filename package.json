@@ -1,0 +1,41 @@
+{
+  "name": "grades-sdk",
+  "version": "0.4.3",
+  "description": "An SDK for easy integration of Grades classification system.",
+  "main": "lib/gradesSDK.js",
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "tsc",
+    "test": "jest --config jestconfig.json --verbose"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.fit.cvut.cz/hampejar/grades-sdk"
+  },
+  "bugs": {
+    "url": "https://gitlab.fit.cvut.cz/hampejar/grades-sdk/issues"
+  },
+  "homepage": "https://gitlab.fit.cvut.cz/hampejar/grades-sdk#readme",
+  "files": [
+    "lib/*"
+  ],
+  "keywords": [
+    "grades",
+    "sdk",
+    "classification",
+    "ctu"
+  ],
+  "author": "Jaroslav Hampejs",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^26.0.22",
+    "dotenv": "^8.2.0",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.4",
+    "typedoc": "^0.20.36",
+    "typescript": "^4.2.3"
+  }
+}
